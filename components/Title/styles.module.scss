@@ -1,0 +1,38 @@
+@import "./static/styles/base/variables";
+
+.title {
+  font-weight: 700;
+
+  &--black {
+    color: $colorBlack;
+  }
+
+  &--secondary_black {
+    color: $colorSecondaryBlack;
+  }
+
+  &--white {
+    color: $colorWhite;
+  }
+
+  &--h1 {
+    font-size: 24px;
+    line-height: 24px;
+
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
+  }
+
+  &--h2 {
+    font-size: 20px;
+    line-height: 32px;
+  }
+
+  &--lexend {
+    font-family: $fontLexend;
+  }
+  &--nunito {
+    font-family: $fontNunito;
+  }
+}

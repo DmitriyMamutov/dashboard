@@ -1,0 +1,22 @@
+{
+  "metaTitle": "Login",
+  "metaDescription": "",
+  "form": {
+    "title": "Welcome!",
+    "items": {
+      "email": {
+        "placeholder": "Email",
+        "required":"Email is required",
+        "valid": "Please enter a valid Email"
+      },
+      "password": {
+        "placeholder": "Password",
+        "required":"Password is required",
+        "short": "Password is too short",
+        "long":"Password is too long"
+      }
+    },
+    "checkbox": "Show Password",
+    "buttonText": "Login"
+  }
+}

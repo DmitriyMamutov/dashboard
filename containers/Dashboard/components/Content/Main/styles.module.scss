@@ -1,0 +1,229 @@
+@import "static/styles/base/variables";
+
+.main {
+    max-width: calc(100% - 260px);
+    width: 100%;
+    background: #f8f8f8;
+
+    @media (max-width: 1024px) {
+        margin-left: -180px;
+        max-width: calc(100% - 80px);
+    }
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #dee0e5;
+        align-items: center;
+        margin-bottom: 40px;
+        padding: 24px 39px 24px 43px;
+
+        @media (max-width: 1024px) {
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        &-left {
+            display: flex;
+
+            &__notification {
+                max-width: 32px;
+                width: 100%;
+                display: flex;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            &__avatar {
+                max-width: 32px;
+                width: 100%;
+                margin-left: 20px;
+                display: flex;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    &-content {
+        padding: 0 27px 0 39px;
+
+        @media (max-width: 1024px) {
+            padding: 0 24px 0 24px;
+        }
+
+        &-students {
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: calc(100vh - 162px);
+            padding-right: 13px;
+
+            @media (max-width: 768px) {
+                overflow-x: auto;
+            }
+
+            &::-webkit-scrollbar {
+                width: 4px;
+                height: 4px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #e5e9f0;
+                border-radius: 6px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $colorPrimaryViolet;
+                border-radius: 6px;
+            }
+
+            &-item {
+                display: flex;
+                background: $colorWhite;
+                border-radius: 6px;
+                box-shadow: 0px 4px 20px 0px rgba($colorBlack, 0.03);
+                margin-bottom: 8px;
+                padding: 8px 16px;
+                align-items: center;
+
+                &:first-child {
+                    margin-bottom: 17px;
+                    background: none;
+                    box-shadow: none;
+                    padding: 0 16px;
+
+                    .main-content-students-item__text {
+                        color: #9f9fb6;
+                        font-family: $fontNunito;
+                        font-size: 16px;
+                        font-weight: 600;
+                        line-height: 24px;
+                        width: 100%;
+                        opacity: 0.6;
+                        padding-right: 8px;
+
+                        @media (max-width: 1024px) {
+                            font-size: 15px;
+                        }
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    width: 1024px;
+                }
+
+                &__avatar {
+                    max-width: 40px;
+                    width: 100%;
+                    display: flex;
+
+                    @media (max-width: 1024px) {
+                        max-width: 32px;
+                    }
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+
+                &__text {
+                    color: $colorSecondaryBlack;
+                    font-family: $fontNunito;
+                    width: 100%;
+                    font-size: 16px;
+                    font-weight: 700;
+                    line-height: 24px;
+                    padding-right: 8px;
+                    word-wrap: break-word;
+
+                    @media (max-width: 1260px) {
+                        max-width: 15%;
+                    }
+
+                    @media (max-width: 1024px) {
+                        font-size: 15px;
+                    }
+                }
+
+                &__name {
+                    margin-left: 44px;
+                    max-width: 132px;
+                    @media (max-width: 1260px) {
+                        max-width: 15%;
+                        margin-left: 24px;
+                    }
+                }
+
+                &__surname {
+                    max-width: 147px;
+                    @media (max-width: 1260px) {
+                        max-width: 15%;
+                    }
+                }
+
+                &__email {
+                    max-width: 194px;
+                    @media (max-width: 1260px) {
+                        max-width: 15%;
+                    }
+                }
+
+                &__age {
+                    max-width: 110px;
+                    @media (max-width: 1260px) {
+                        max-width: 64px;
+                        padding: 0 16px;
+                    }
+                }
+
+                &__course {
+                    max-width: 197px;
+                    @media (max-width: 1260px) {
+                        max-width: 15%;
+                    }
+                }
+
+                &__group {
+                    max-width: 177px;
+
+                    @media (max-width: 1260px) {
+                        max-width: 64px;
+                    }
+                }
+
+                &__edit {
+                    max-width: 24px;
+                    width: 100%;
+                    display: flex;
+                    margin-left: auto;
+                    height: 24px;
+
+                    &:hover {
+                        svg {
+                            path {
+                                fill: $colorPrimaryViolet;
+                            }
+                        }
+                    }
+
+                    svg {
+                        width: 100%;
+                        height: auto;
+                        cursor: pointer;
+
+                        path {
+                            transition: $timeMedium ease;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

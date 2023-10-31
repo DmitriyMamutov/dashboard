@@ -1,0 +1,187 @@
+@import "static/styles/base/variables";
+
+.burger {
+    background: #3f1e85;
+    max-width: 260px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: $timeMedium ease;
+    position: relative;
+    z-index: 1;
+    overflow-y: auto;
+    
+    @media (max-width: 1024px) {
+        transform: translateX(-180px);
+    }
+
+    &--active {
+        @media (max-width: 1024px) {
+            transform: translateX(0px);
+        }
+
+        @media (max-width: 480px) {
+        }
+    }
+
+    &-header {
+        padding: 15px 32px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (max-width: 1024px) {
+            padding-right: 20px;
+        }
+
+        &__logo {
+            max-width: 42px;
+            width: 100%;
+            margin-right: auto;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        &__icon {
+            max-width: 40px;
+            width: 100%;
+            height: 32px;
+            position: relative;
+            transition: $timeMedium ease;
+            display: none;
+
+            @media (max-width: 1024px) {
+                display: block;
+            }
+
+            &:before {
+                content: "";
+                position: absolute;
+                top: calc(50% - 8px);
+                transform: translateY(-50%);
+                left: 0;
+                width: 100%;
+                height: 4px;
+                border-radius: 2px;
+                background-color: $colorWhite;
+                transition: $timeMedium ease;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: calc(50% + 8px);
+                transform: translateY(-50%);
+                left: 0;
+                width: 100%;
+                height: 4px;
+                border-radius: 2px;
+                background-color: $colorWhite;
+                transition: $timeMedium ease;
+            }
+
+            &--active {
+                &:before {
+                    top: 50%;
+                    transform: translateY(-50%) rotate(45deg);
+                }
+
+                &:after {
+                    top: 50%;
+                    transform: translateY(-50%) rotate(-45deg);
+                }
+            }
+        }
+    }
+
+    &-list {
+        position: relative;
+        margin-bottom: 32px;
+
+        &-item {
+            display: flex;
+            padding: 17px 20px 17px 32px;
+            align-items: center;
+
+            &--border {
+                &:first-child {
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                }
+            }
+
+            &--active {
+                background: #4b259b;
+                position: relative;
+                .burger-list-item__text {
+                    opacity: 1;
+                }
+
+                &:before {
+                    content: "";
+                    width: 4px;
+                    height: 100%;
+                    background-color: $colorWhite;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+            }
+
+            &__icon {
+                max-width: 18px;
+                width: 100%;
+                display: flex;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            &__text {
+                display: flex;
+                color: $colorWhite;
+                font-family: $fontNunito;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 19.6px;
+                opacity: 0.8;
+                margin-left: 12px;
+            }
+        }
+    }
+
+    &-logout {
+        margin-top: auto;
+        padding: 0 20px 37px 32px;
+        display: flex;
+        align-items: center;
+
+        &__icon {
+            max-width: 18px;
+            width: 100%;
+            display: flex;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        &__text {
+            display: flex;
+            color: $colorWhite;
+            font-family: $fontNunito;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 22.4px;
+            margin-left: 12px;
+        }
+    }
+}

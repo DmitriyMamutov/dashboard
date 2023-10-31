@@ -1,0 +1,132 @@
+{
+  "metaTitle": "Dashboard",
+  "metaDescription": "",
+  "headerTitle": "Students",
+  "menuItems": {
+    "m1": {
+      "text": "Dashboard"
+    },
+    "m2": {
+      "text": "Courses"
+    },
+    "m3": {
+      "text": "Lectors"
+    },
+    "m4": {
+      "text": "Groups"
+    },
+    "m5": {
+      "text": "Students"
+    }
+  },
+  "logout": "Log out",
+  "dashboardColumns": {
+    "name": "Name",
+    "surname": "Surname",
+    "email": "Email",
+    "age": "Age",
+    "course": "Course",
+    "group": "Group"
+  },
+  "dashboardItems": {
+    "i0": {
+      "name": "Name",
+      "surname": "Surname",
+      "email": "Email",
+      "age": "Age",
+      "course": "Course",
+      "group": "Group"
+    },
+    "i1": {
+      "name": "Mitchell",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U12"
+    },
+    "i2": {
+      "name": "Cody",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U13"
+    },
+    "i3": {
+      "name": "Colleen",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U10"
+    },
+    "i4": {
+      "name": "Ronald",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U14"
+    },
+    "i5": {
+      "name": "Darlene",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U8"
+    },
+    "i6": {
+      "name": "Philip",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U11"
+    },
+    "i7": {
+      "name": "Ann",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U12"
+    },
+    "i8": {
+      "name": "Arlene",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U16"
+    },
+    "i9": {
+      "name": "Kristin",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U6"
+    },
+    "i10": {
+      "name": "Debra",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U12"
+    },
+    "i11": {
+      "name": "Dianne",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U12"
+    },
+    "i12": {
+      "name": "Kyle",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U15"
+    },
+    "i13": {
+      "name": "Gladys",
+      "surname": "Smith",
+      "email": "mail@mail.com",
+      "course": "UX/UI Design",
+      "group": "U18"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "metaTitle": "Register",
+  "metaDescription": "",
+  "form": {
+    "title": "Register your account",
+    "items": {
+      "email": {
+        "placeholder": "Email",
+        "required":"Email is required",
+        "valid": "Please enter a valid Email"
+      },
+      "password": {
+        "placeholder": "Password",
+        "required":"Password is required",
+        "short": "Password is too short",
+        "long":"Password is too long"
+      },
+      "confirmPassword": {
+        "placeholder": "Confirm Password",
+        "match": "Passwords don't match"
+      }
+    },
+    "checkbox": "Show Password",
+    "buttonText": "Register"
+  }
+}

@@ -1,0 +1,55 @@
+@import "./static/styles/base/variables";
+
+.checkbox {
+  position: relative;
+  display: inline-block;
+  color: $colorHoverGrey;
+  font-family: $fontLexend;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 4px 0 4px 40px;
+  cursor: pointer;
+  user-select: none;
+
+  &__input {
+    display: none;
+
+    &:checked + .checkbox__mark {
+      background-color: $colorPrimaryViolet;
+      border-color: $colorPrimaryViolet;
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__mark {
+    position: absolute;
+    background-color: $colorWhite;
+    height: 20px;
+    width: 20px;
+    border-radius: 3px;
+    border: 1px solid $colorActiveGrey;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: $timeFast ease;
+
+    &::after {
+      position: absolute;
+      content: "";
+      opacity: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      width: 12px;
+      transition: $timeFast ease;
+      background: url("/static/images/register/checked.svg") no-repeat center;
+      background-size: 12px 12px;
+      background-position: 0.5px 0.6px;
+      height: 12px;
+    }
+  }
+}

@@ -1,0 +1,141 @@
+@import "static/styles/base/variables";
+
+.form {
+    position: relative;
+    padding: 40px 0 90px;
+    display: flex;
+
+    @media (max-width: 1024px) {
+        padding: 128px 0 88px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 80px 0 72px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 64px 0;
+    }
+
+    @media (min-height: 701px) {
+        height: 100vh;
+    }
+
+    &__wrapper {
+        width: 100%;
+        margin-top: auto;
+
+        @media (min-height: 900px) {
+            margin: auto;
+        }
+    }
+
+    &__image {
+        max-width: 80px;
+        width: 100%;
+        display: flex;
+        margin: 0 auto 44px;
+
+        @media (max-width: 480px) {
+            margin-bottom: 32px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &__title {
+        text-align: center;
+        margin-bottom: 32px;
+
+        @media (max-width: 480px) {
+            margin-bottom: 24px;
+        }
+    }
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+        max-width: 376px;
+        width: 100%;
+        margin: 0 auto;
+
+        &-label {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 32px;
+            position: relative;
+
+            @media (max-width: 480px) {
+                margin-bottom: 24px;
+            }
+
+            &__text {
+                margin-bottom: 4px;
+                color: $colorHoverGrey;
+                font-family: $fontLexend;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 24px;
+            }
+
+            &__input {
+                transition: $timeMedium;
+                border: 1px solid $colorActiveGrey;
+                background: $colorWhite;
+                color: $colorBlack;
+                font-family: $fontLexend;
+                font-size: 15px;
+                font-weight: 400;
+                line-height: 24px;
+                padding: 11px 16px;
+                --webkit-appearance: none;
+                color: $colorBlack;
+
+                &:focus {
+                    outline: unset;
+                    border: 1px solid $colorPressedGreyButton;
+                    --webkit-appearance: none;
+                }
+            }
+
+            &__error {
+                font-family: $fontLexend;
+                color: $colorErrorRed;
+                position: absolute;
+                width: 100%;
+                bottom: -20px;
+                left: 0px;
+                font-size: 12px;
+                line-height: 16px;
+                font-weight: 400;
+
+                @media (max-width: 480px) {
+                    bottom: -18px;
+                }
+            }
+
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus input:-webkit-autofill,
+            textarea:-webkit-autofill,
+            textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+            select:-webkit-autofill,
+            select:-webkit-autofill:hover,
+            select:-webkit-autofill:focus {
+                border: 1px solid $colorPressedGreyButton !important;
+                transition: background-color 5000s ease-in-out 0s;
+            }
+        }
+
+        &__checkbox {
+            margin-bottom: 32px;
+
+            @media (max-width: 480px) {
+                margin-bottom: 24px;
+            }
+        }
+    }
+}
