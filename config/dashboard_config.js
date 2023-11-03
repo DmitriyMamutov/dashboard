@@ -34,11 +34,11 @@ module.exports = {
   ],
 
   STUDENTS_LIST: [
-    {
-      id: "i0",
-      isAvatar: false,
-      isEdit: false
-    },
+    // {
+    //   id: "i0",
+    //   isAvatar: false,
+    //   isEdit: false
+    // },
     {
       id: "i1",
       avatarUrl: "/static/images/dashboard/list/1.png",
