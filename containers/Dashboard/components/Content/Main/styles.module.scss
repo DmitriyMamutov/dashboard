@@ -171,6 +171,11 @@
                     flex-direction: column;
                 }
 
+                &:last-child {
+                    margin-bottom: 32px;
+                }
+
+
                 &__wrapper {
                     display: flex;
                     align-items: center;
