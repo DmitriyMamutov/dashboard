@@ -25,11 +25,5 @@ const Title = (props) => {
   return <CustomTag className={titleClass}>{children}</CustomTag>;
 };
 
-Title.defaultProps = {
-  size: "h1",
-  color: "black",
-  level: 1,
-  font: "Lexend",
-};
 
 export default Title;

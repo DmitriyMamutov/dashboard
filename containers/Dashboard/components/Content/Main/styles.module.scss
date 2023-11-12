@@ -46,7 +46,9 @@
                 width: 100%;
                 margin-left: 20px;
                 display: flex;
-
+                border-radius: 50%;
+                overflow: hidden;
+                
                 img {
                     width: 100%;
                     height: auto;
@@ -174,7 +176,6 @@
                 &:last-child {
                     margin-bottom: 32px;
                 }
-
 
                 &__wrapper {
                     display: flex;

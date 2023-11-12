@@ -1,3 +1,5 @@
 module.exports = {
-    LOGO_VIOLET: '/static/images/register/frame.png',
+    LOGO_VIOLET: '/static/images/common/frame.png',
+
+    LOADER: '/static/images/common/loader.gif',
 }

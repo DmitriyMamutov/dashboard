@@ -40,11 +40,4 @@ const Button = props => {
   );
 };
 
-Button.defaultProps = {
-  size: 'large',
-  variant: 'primary',
-  type: 'button',
-  width: 'max',
-};
-
 export default Button;

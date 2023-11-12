@@ -136,5 +136,23 @@
                 margin-bottom: 24px;
             }
         }
+
+        &__button {
+            margin-bottom: 12px;
+            height: 56px;
+            img {
+                max-width: 24px;
+                width: 100%;
+            }
+        }
+
+        &__error {
+            font-family: $fontLexend;
+            color: $colorErrorRed;
+            width: 100%;
+            font-size: 12px;
+            line-height: 16px;
+            font-weight: 400;
+        }
     }
 }

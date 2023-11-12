@@ -4,19 +4,20 @@
   "form": {
     "title": "Welcome!",
     "items": {
-      "email": {
-        "placeholder": "Email",
-        "required":"Email is required",
-        "valid": "Please enter a valid Email"
+      "name": {
+        "placeholder": "Name",
+        "required": "Name is required",
+        "valid": "Please enter a valid Name"
       },
       "password": {
         "placeholder": "Password",
-        "required":"Password is required",
+        "required": "Password is required",
         "short": "Password is too short",
-        "long":"Password is too long"
+        "long": "Password is too long"
       }
     },
     "checkbox": "Show Password",
-    "buttonText": "Login"
+    "buttonText": "Login",
+    "responseError": "Your name or password were incorrect. Please try again."
   }
 }

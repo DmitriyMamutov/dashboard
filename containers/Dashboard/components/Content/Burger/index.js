@@ -1,20 +1,33 @@
+"use client";
 import { useState } from "react";
 import useTranslation from "next-translate/useTranslation";
 import { LOGO_URL, MENU_LIST, LOGOUT_URL } from "config/dashboard_config";
 import Image from "next/image";
 import cn from "classnames";
 import useMediaQuery from "hooks/UseMediaQuery";
+import Cookies from "universal-cookie";
+import { useDispatch } from "react-redux";
+import { logoutAccount } from "redux/reducers/user";
 
 import styles from "./styles.module.scss";
 
 const Burger = () => {
   const { t } = useTranslation("dashboard");
   const isBreakpoint = useMediaQuery(1024);
+  const cookies = new Cookies();
+
+  const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
 
-  const handleClick = () => {
+  const handleMenu = () => {
     setOpen(!open);
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutAccount());
+    cookies.remove("token");
+    location.assign("/login");
   };
 
   return (
@@ -28,7 +41,7 @@ const Burger = () => {
           <Image src={LOGO_URL} width={84} height={84} alt={t("metaTitle")} />
         </div>
         <div
-          onClick={handleClick}
+          onClick={handleMenu}
           className={cn(styles["burger-header__icon"], {
             [styles["burger-header__icon--active"]]: open,
           })}
@@ -64,7 +77,7 @@ const Burger = () => {
         })}
       </div>
 
-      <div className={styles["burger-logout"]}>
+      <div onClick={handleLogout} className={styles["burger-logout"]}>
         <div className={styles["burger-logout__icon"]}>
           <Image src={LOGOUT_URL} width={36} height={36} alt={t("logout")} />
         </div>

@@ -1,7 +1,7 @@
 module.exports = {
   FORM_LIST: [
     {
-      id: "email",
+      id: "name",
       type: "text",
     },
     {

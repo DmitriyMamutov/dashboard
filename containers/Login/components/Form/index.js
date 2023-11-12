@@ -1,30 +1,49 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import useTranslation from "next-translate/useTranslation";
-import Title from "components/Title";
-import { FORM_LIST } from "config/login_config";
-import { LOGO_VIOLET } from "config/data_config";
-import Button from "components/Button";
-import Checkbox from "components/Checkbox";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Cookies from "universal-cookie";
+
+import Title from "components/Title";
+import Button from "components/Button";
+import Checkbox from "components/Checkbox";
+
+import { FORM_LIST } from "config/login_config";
+import { LOGO_VIOLET, LOADER } from "config/data_config";
+import axios from "axios";
+import { loginAccount } from "redux/reducers/user";
+import { useDispatch } from "react-redux";
 
 import styles from "./styles.module.scss";
+
+// username: 'kminchelle',
+// password: '0lelplR',
 
 const Form = () => {
   const [checkboxActive, setCheckboxActive] = useState(false);
   const [inputType, setInputType] = useState("password");
+  const [errorStatus, setErrorStatus] = useState(null);
+
+  const dispatch = useDispatch();
+
+  // const user = useSelector((state) => state.user.user);
+
+  // console.log("user ", user);
+
+  const cookies = new Cookies();
+  const expirationDate = new Date();
+  expirationDate.setDate(expirationDate.getDate() + 7);
 
   const { t } = useTranslation("login");
 
   const schema = yup
     .object()
     .shape({
-      email: yup
-        .string()
-        .required(t("form.items.email.required"))
-        .email(t("form.items.email.valid")),
+      name: yup.string().required(t("form.items.name.required")),
       password: yup
         .string()
         .required(t("form.items.password.required"))
@@ -36,7 +55,8 @@ const Form = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
@@ -46,6 +66,28 @@ const Form = () => {
     setCheckboxActive(!checkboxActive);
   };
 
+  const onSubmit = async (value) => {
+    try {
+      await axios
+        .post("https://dummyjson.com/auth/login", {
+          username: value.name,
+          password: value.password,
+        })
+        .then((response) => {
+          dispatch(loginAccount(response.data));
+          cookies.set("token", response.data.token, {
+            expires: expirationDate,
+            secure: true,
+          });
+          setErrorStatus(null);
+          location.assign("/dashboard");
+          reset();
+        });
+    } catch ({ response }) {
+      setErrorStatus(response.status);
+    }
+  };
+
   useEffect(() => {
     if (checkboxActive) {
       setInputType("text");
@@ -53,14 +95,6 @@ const Form = () => {
       setInputType("password");
     }
   }, [checkboxActive]);
-
-  const onSubmit = (data) => {
-    const result = {
-      email: data.email,
-      password: data.password,
-    };
-    console.log(result, "result");
-  };
 
   return (
     <section className={styles["form"]}>
@@ -75,7 +109,13 @@ const Form = () => {
             />
           </div>
 
-          <Title level={1} size="h2" className={styles["form__title"]}>
+          <Title
+            color="black"
+            font="Lexend"
+            level={1}
+            size="h2"
+            className={styles["form__title"]}
+          >
             {t("form.title")}
           </Title>
 
@@ -107,7 +147,22 @@ const Form = () => {
               />
             </div>
 
-            <Button type="submit">{t("form.buttonText")}</Button>
+            <Button
+              className={styles["form-content__button"]}
+              size="large"
+              variant="primary"
+              width="max"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? <img src={LOADER} /> : t("form.buttonText")}
+            </Button>
+
+            {errorStatus && errorStatus !== 200 && (
+              <div className={styles["form-content__error"]}>
+                {t(`form.responseError`)}
+              </div>
+            )}
           </form>
         </div>
       </div>
@@ -116,3 +171,31 @@ const Form = () => {
 };
 
 export default Form;
+
+// const onSubmit = async (value) => {
+//   try {
+//     const response = await fetch("https://dummyjson.com/auth/login", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//         username: value.name,
+//         password: value.password,
+//         // username: 'kminchelle',
+//         // password: '0lelplR',
+//       }),
+//     });
+
+//     if (response.status === 200) {
+//       const data = await response.json();
+//       console.log("success ", data);
+//       cookies.set("token", data.token, {
+//         expires: expirationDate,
+//       });
+//       setErrorStatus(null);
+//     } else {
+//       setErrorStatus(response.status);
+//     }
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
