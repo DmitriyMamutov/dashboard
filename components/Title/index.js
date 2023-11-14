@@ -10,7 +10,6 @@ const Title = (props) => {
     {
       [styles["title--h1"]]: size === "h1",
       [styles["title--h2"]]: size === "h2",
-      [styles["title--h3"]]: size === "h3",
       [styles["title--black"]]: color === "black",
       [styles["title--secondary_black"]]: color === "secondary-black",
       [styles["title--white"]]: color === "white",

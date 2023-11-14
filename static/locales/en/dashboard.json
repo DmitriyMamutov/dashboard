@@ -2,6 +2,9 @@
   "metaTitle": "Dashboard",
   "metaDescription": "",
   "headerTitle": "Students",
+  "logout": "Log out",
+  "search": "Search",
+  "addNew": "Add new student",
   "menuItems": {
     "m1": {
       "text": "Dashboard"
@@ -19,7 +22,6 @@
       "text": "Students"
     }
   },
-  "logout": "Log out",
   "dashboardColumns": {
     "name": "Name",
     "surname": "Surname",
@@ -128,5 +130,9 @@
       "course": "UX/UI Design",
       "group": "U18"
     }
+  },
+  "modal": {
+    "title": "Add new student",
+    "items": {}
   }
 }

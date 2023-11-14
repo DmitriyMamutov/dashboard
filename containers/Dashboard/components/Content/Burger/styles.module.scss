@@ -157,12 +157,15 @@
 
     &-logout {
         margin-top: auto;
-        padding: 0 20px 37px 32px;
+        padding: 0 20px 0px 32px;
+        margin-bottom: 37px;
         display: flex;
         align-items: center;
         cursor: pointer;
         transition: $timeMedium ease;
-
+        max-width: 140px;
+        width: 100%;
+        height: min-content;
         &:hover {
             opacity: 0.8;
         }

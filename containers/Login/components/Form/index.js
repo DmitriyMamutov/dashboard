@@ -30,10 +30,6 @@ const Form = () => {
 
   const dispatch = useDispatch();
 
-  // const user = useSelector((state) => state.user.user);
-
-  // console.log("user ", user);
-
   const cookies = new Cookies();
   const expirationDate = new Date();
   expirationDate.setDate(expirationDate.getDate() + 7);

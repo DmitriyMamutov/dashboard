@@ -9,6 +9,12 @@ module.exports = {
 
   EDIT_URL: "/static/images/dashboard/list/edit.svg",
 
+  CLOSE_URL: "/static/images/dashboard/close.svg",
+
+  SEARCH_URL: "/static/images/dashboard/search.png",
+
+  ADD_URL: "/static/images/dashboard/add.png",
+
   MENU_LIST: [
     {
       id: "m1",
