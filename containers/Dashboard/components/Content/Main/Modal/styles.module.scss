@@ -33,6 +33,14 @@
             overflow: scroll;
             max-height: 100vh;
 
+            @media (max-width: 768px) {
+                padding: 40px 48px;
+            }
+
+            @media (max-width: 480px) {
+                padding: 56px 32px;
+            }
+
             &__close {
                 position: absolute;
                 top: 12px;

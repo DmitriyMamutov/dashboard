@@ -68,11 +68,13 @@ const Modal = (props) => {
           dispatch(addStudent(response.data));
 
           setResponseStatus(response.status);
-          reset();
 
           setTimeout(() => {
             closeModal();
           }, 700);
+
+          reset();
+
         });
     } catch ({ response }) {
       setResponseStatus(response.status);
