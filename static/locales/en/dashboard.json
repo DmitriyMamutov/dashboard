@@ -5,6 +5,29 @@
   "logout": "Log out",
   "search": "Search",
   "addNew": "Add new student",
+  "sortBy": "Sort by",
+  "sortList": [
+    {
+      "id": "s1",
+      "text": "A-Z"
+    },
+    {
+      "id": "s2",
+      "text": "Z-A"
+    },
+    {
+      "id": "s3",
+      "text": "Youngest first"
+    },
+    {
+      "id": "s4",
+      "text": "Oldest first"
+    },
+    {
+      "id": "s5",
+      "text": "All"
+    }
+  ],
   "menuItems": {
     "m1": {
       "text": "Dashboard"
@@ -133,6 +156,36 @@
   },
   "modal": {
     "title": "Add new student",
-    "items": {}
+    "formItems": {
+      "firstName": {
+        "placeholder": "Name",
+        "required": "Name is required"
+      },
+      "lastName": {
+        "placeholder": "Surname",
+        "required": "Surname is required"
+      },
+      "email": {
+        "placeholder": "Email",
+        "required": "Email is required",
+        "valid": "Please enter a valid email"
+      },
+      "age": {
+        "placeholder": "Age",
+        "required": "Age is required",
+        "valid": "Please enter a valid age"
+      },
+      "course": {
+        "placeholder": "Course",
+        "required": "Course is required"
+      },
+      "group": {
+        "placeholder": "Group",
+        "required": "Group is required"
+      }
+    },
+    "error": "Check the passed values",
+    "success": "Student Added",
+    "buttonText": "Create"
   }
 }

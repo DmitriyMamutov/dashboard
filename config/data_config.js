@@ -1,5 +1,5 @@
 module.exports = {
-    LOGO_VIOLET: '/static/images/common/frame.png',
+  LOGO_VIOLET: "/static/images/common/frame.png",
 
-    LOADER: '/static/images/common/loader.gif',
-}
+  LOADER: "/static/images/common/loader.gif",
+};

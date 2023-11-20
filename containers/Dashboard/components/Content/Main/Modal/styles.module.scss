@@ -20,7 +20,6 @@
     &-banner {
         max-width: 595px;
         width: 100%;
-        height: 724px;
         position: fixed;
         background: $colorWhite;
         top: 50%;
@@ -28,14 +27,16 @@
         transform: translate(-50%, -50%);
 
         &-content {
-            padding: 86px 110px;
+            padding: 40px 110px 48px;
             position: relative;
             margin: 0 auto;
+            overflow: scroll;
+            max-height: 100vh;
 
             &__close {
                 position: absolute;
-                top: 20px;
-                right: 20px;
+                top: 12px;
+                right: 12px;
                 display: flex;
                 max-width: 40px;
                 width: 100%;
@@ -65,7 +66,106 @@
             &__title {
                 text-align: center;
                 width: 100%;
-                margin-bottom: 32px;
+                margin-bottom: 16px;
+            }
+
+            &-form {
+                display: flex;
+                flex-direction: column;
+
+                &-label {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 24px;
+                    position: relative;
+
+                    @media (max-width: 480px) {
+                        margin-bottom: 24px;
+                    }
+
+                    &__text {
+                        margin-bottom: 4px;
+                        color: $colorHoverGrey;
+                        font-family: $fontLexend;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 24px;
+                    }
+
+                    &__input {
+                        transition: $timeMedium;
+                        border: 1px solid $colorActiveGrey;
+                        background: $colorWhite;
+                        color: $colorBlack;
+                        font-family: $fontLexend;
+                        font-size: 15px;
+                        font-weight: 400;
+                        line-height: 24px;
+                        padding: 11px 16px;
+                        --webkit-appearance: none;
+                        color: $colorBlack;
+
+                        &:focus {
+                            outline: unset;
+                            border: 1px solid $colorPressedGreyButton;
+                            --webkit-appearance: none;
+                        }
+                    }
+
+                    &__error {
+                        font-family: $fontLexend;
+                        color: $colorErrorRed;
+                        position: absolute;
+                        width: 100%;
+                        bottom: -20px;
+                        left: 0px;
+                        font-size: 12px;
+                        line-height: 16px;
+                        font-weight: 400;
+
+                        @media (max-width: 480px) {
+                            bottom: -18px;
+                        }
+                    }
+                }
+
+                &-bottom {
+                    position: relative;
+                    &__button {
+                        margin-top: 8px;
+                        height: 56px;
+                        max-width: 100%;
+                        width: 100%;
+                        img {
+                            max-width: 24px;
+                            width: 100%;
+                        }
+                    }
+
+                    &__error {
+                        font-family: $fontLexend;
+                        color: $colorErrorRed;
+                        width: 100%;
+                        font-size: 12px;
+                        line-height: 16px;
+                        font-weight: 400;
+                        position: absolute;
+                        bottom: -20px;
+                        left: 0px;
+                    }
+
+                    &__success {
+                        font-family: $fontLexend;
+                        color: $colorAcademyGreen;
+                        width: 100%;
+                        font-size: 14px;
+                        line-height: 16px;
+                        font-weight: 500;
+                        position: absolute;
+                        bottom: -20px;
+                        left: 0px;
+                    }
+                }
             }
         }
     }

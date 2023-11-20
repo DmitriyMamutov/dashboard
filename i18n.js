@@ -6,7 +6,7 @@ module.exports = {
     "/": ["index"],
     "/register": ["register"],
     "/login": ["login"],
-    "/dashboard": ["dashboard"],
+    "/dashboard": ["dashboard", "student"],
   },
   loadLocaleFrom: (lang, ns) =>
     import(`./static/locales/${lang}/${ns}.json`).then((m) => m.default),

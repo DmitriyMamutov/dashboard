@@ -6,6 +6,8 @@ module.exports = {
   HEADER_AVATAR_URL: "/static/images/dashboard/header/avatar.png",
 
   NOTIFICATION_URL: "/static/images/dashboard/header/notification.png",
+  
+  ARROW_URL: "/static/images/dashboard/student/arrow.png",
 
   EDIT_URL: "/static/images/dashboard/list/edit.svg",
 
@@ -104,6 +106,39 @@ module.exports = {
       id: "i13",
       avatarUrl: "/static/images/dashboard/list/1.png",
       age: "24",
+    },
+  ],
+
+  FORM_LIST: [
+    {
+      id: "firstName",
+      placeholder: "firstName",
+      type: "text",
+    },
+    {
+      id: "lastName",
+      placeholder: "lastName",
+      type: "text",
+    },
+    {
+      id: "email",
+      placeholder: "email",
+      type: "email",
+    },
+    {
+      id: "age",
+      placeholder: "age",
+      type: "text",
+    },
+    {
+      id: "course",
+      placeholder: "title",
+      type: "text",
+    },
+    {
+      id: "group",
+      placeholder: "department",
+      type: "text",
     },
   ],
 };

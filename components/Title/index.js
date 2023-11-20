@@ -24,5 +24,4 @@ const Title = (props) => {
   return <CustomTag className={titleClass}>{children}</CustomTag>;
 };
 
-
 export default Title;

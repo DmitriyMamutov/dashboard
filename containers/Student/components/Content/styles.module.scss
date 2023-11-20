@@ -1,0 +1,357 @@
+@import "static/styles/base/variables";
+
+.content {
+    position: relative;
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+        padding: 8px 39px 8px 32px;
+
+        @media (max-width: 1024px) {
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        @media (max-width: 480px) {
+            padding: 24px 16px;
+        }
+
+        &__image {
+            max-width: 42px;
+            width: 100%;
+            display: flex;
+
+            @media (max-width: 480px) {
+                margin-bottom: 24px;
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        &-right {
+            display: flex;
+
+            &__notification {
+                max-width: 32px;
+                width: 100%;
+                display: flex;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            &__avatar {
+                max-width: 32px;
+                width: 100%;
+                margin-left: 20px;
+                display: flex;
+                border-radius: 50%;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    &-block {
+        padding: 0px 80.5px;
+        display: flex;
+        margin-bottom: 40px;
+        justify-content: center;
+
+        @media (max-width: 1260px) {
+            padding: 0px 30px;
+        }
+
+        @media (max-width: 1060px) {
+            flex-direction: column;
+        }
+
+        &-back {
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                .content-block-back__text {
+                    color: $colorHoverGrey;
+                }
+            }
+
+            &:active {
+                .content-block-back__text {
+                    color: $colorPressedBlack;
+                }
+            }
+
+            @media (max-width: 1060px) {
+                margin-bottom: 40px;
+            }
+            &__arrow {
+                max-width: 24px;
+                width: 100%;
+
+                img {
+                    display: flex;
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            &__text {
+                margin-left: 8px;
+                color: $colorBlack;
+                font-family: $fontLexend;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 24px;
+                letter-spacing: -0.32px;
+                transition: $timeMedium ease;
+            }
+        }
+
+        &-form {
+            margin-left: 152.5px;
+            max-width: 832px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            @media (max-width: 1260px) {
+                margin-left: 10.5vw;
+            }
+
+            @media (max-width: 1060px) {
+                margin-left: 0px;
+                max-width: 100%;
+            }
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+            }
+
+            &__title {
+                color: $colorBlack;
+                font-family: $fontLexend;
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 32px;
+                margin-bottom: 24px;
+
+                &--right {
+                    @media (max-width: 768px) {
+                        display: none;
+                    }
+                }
+            }
+
+            &-left {
+                max-width: 376px;
+                width: 100%;
+
+                @media (max-width: 1060px) {
+                    max-width: 47%;
+                }
+
+                @media (max-width: 768px) {
+                    max-width: 100%;
+                }
+
+                &-wrapper {
+                    width: 100%;
+
+                    &-top {
+                        display: flex;
+                        margin-bottom: 24px;
+
+                        @media (max-width: 768px) {
+                            flex-direction: column;
+                            max-width: 400px;
+                            width: 100%;
+                        }
+
+                        &__image {
+                            max-width: 128px;
+                            width: 100%;
+
+                            @media (max-width: 768px) {
+                                margin-bottom: 16px;
+                            }
+
+                            img {
+                                width: 100%;
+                                height: auto;
+                            }
+                        }
+
+                        &-right {
+                            margin-left: 40px;
+                            width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+
+                            @media (max-width: 1060px) {
+                                margin-left: 16px;
+                            }
+
+                            @media (max-width: 768px) {
+                                margin-left: 0px;
+                            }
+
+                            &__button {
+                                width: 100%;
+                                margin-bottom: 16px;
+
+                                button {
+                                    width: 100%;
+                                }
+                            }
+
+                            &__requirements {
+                                color: $colorHoverGrey;
+                                font-family: $fontLexend;
+                                font-size: 14px;
+                                font-weight: 400;
+                                line-height: 24px;
+                                width: 105%;
+                            }
+                        }
+                    }
+
+                    &-main {
+                        width: 100%;
+                        position: relative;
+
+                        &-label {
+                            display: flex;
+                            flex-direction: column;
+                            margin-bottom: 24px;
+                            position: relative;
+
+                            @media (max-width: 480px) {
+                                margin-bottom: 24px;
+                            }
+
+                            &__text {
+                                margin-bottom: 4px;
+                                color: $colorHoverGrey;
+                                font-family: $fontLexend;
+                                font-size: 14px;
+                                font-weight: 400;
+                                line-height: 24px;
+                            }
+
+                            &__input {
+                                transition: $timeMedium;
+                                border: 1px solid $colorActiveGrey;
+                                background: $colorWhite;
+                                color: $colorBlack;
+                                font-family: $fontLexend;
+                                font-size: 15px;
+                                font-weight: 400;
+                                line-height: 24px;
+                                padding: 11px 16px;
+                                --webkit-appearance: none;
+                                color: $colorBlack;
+
+                                &:focus {
+                                    outline: unset;
+                                    border: 1px solid $colorPressedGreyButton;
+                                    --webkit-appearance: none;
+                                }
+
+                                &::placeholder {
+                                    color: $colorBlack;
+                                }
+                            }
+
+                            &__error {
+                                font-family: $fontLexend;
+                                color: $colorErrorRed;
+                                position: absolute;
+                                width: 100%;
+                                bottom: -20px;
+                                left: 0px;
+                                font-size: 12px;
+                                line-height: 16px;
+                                font-weight: 400;
+
+                                @media (max-width: 480px) {
+                                    bottom: -18px;
+                                }
+                            }
+                        }
+
+                        &__bottom {
+                            @media (max-width: 768px) {
+                                display: none;
+                            }
+                        }
+
+                        &__button {
+                            max-width: 100%;
+                            width: 100%;
+
+                            img {
+                                max-width: 24px;
+                                width: 100%;
+                            }
+                        }
+
+                        &__error {
+                            font-family: $fontLexend;
+                            color: $colorErrorRed;
+                            width: 100%;
+                            font-size: 12px;
+                            line-height: 16px;
+                            font-weight: 400;
+                            margin-top: 4px;
+                        }
+
+                        &__success {
+                            font-family: $fontLexend;
+                            color: $colorAcademyGreen;
+                            width: 100%;
+                            font-size: 14px;
+                            line-height: 16px;
+                            font-weight: 500;
+                            margin-top: 4px;
+                        }
+                    }
+                }
+            }
+
+            &-right {
+                max-width: 376px;
+                width: 100%;
+
+                @media (max-width: 1060px) {
+                    max-width: 47%;
+                }
+
+                @media (max-width: 768px) {
+                    max-width: 100%;
+                }
+
+                &__bottom {
+                    display: none;
+
+                    @media (max-width: 768px) {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}

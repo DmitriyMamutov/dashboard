@@ -7,41 +7,85 @@ import {
   EDIT_URL,
   SEARCH_URL,
   ADD_URL,
+  ARROW_URL,
 } from "config/dashboard_config";
 import Image from "next/image";
 import cn from "classnames";
 import Title from "components/Title";
 import { ReactSVG } from "react-svg";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Button from "components/Button";
 import Modal from "./Modal";
+import {
+  getStudents,
+  sortStudentsZa,
+  sortStudentsAz,
+  sortStudentsAgeYoungest,
+  sortStudentsAgeOldest,
+  sortStudentsDefault,
+} from "redux/reducers/students";
+import Link from "next/link";
 
 import styles from "./styles.module.scss";
 
 const Main = () => {
-  const [users, setUsers] = useState([]);
-  const [userId, setUserId] = useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(false);
+
+  const [query, setQuery] = useState("");
+  const [choosenSortId, setChoosenSortId] = useState("s5");
 
   const { t } = useTranslation("dashboard");
+  const dispatch = useDispatch();
 
   const avatarUrl = useSelector((state) => state.user.user.avatarUrl);
+  const studentsArray = useSelector((state) => state.students.students);
+
+  const logStudents = JSON.parse(localStorage.getItem("persist:root"));
+  const newLog = JSON.parse(logStudents.students);
 
   useEffect(() => {
-    axios.get("https://dummyjson.com/users").then((response) => {
-      console.log("response", response.data.users);
+    if (newLog.students.length === 0) {
+      axios.get("https://dummyjson.com/users").then((response) => {
+        dispatch(getStudents(response.data.users));
+      });
+    }
 
-      setUsers(response.data.users);
-    });
+    return () => dispatch(sortStudentsDefault());
   }, []);
 
+  const handleSort = (id) => {
+    setChoosenSortId(id);
+    if (id === "s1") {
+      dispatch(sortStudentsAz());
+    }
+    if (id === "s2") {
+      dispatch(sortStudentsZa());
+    }
+    if (id === "s3") {
+      dispatch(sortStudentsAgeYoungest());
+    }
+    if (id === "s4") {
+      dispatch(sortStudentsAgeOldest());
+    }
+    if (id === "s5") {
+      dispatch(sortStudentsDefault());
+    }
+  };
+
+  const handleDropdown = () => {
+    setActiveDropdown(!activeDropdown);
+  };
+
+  const choosenSortText = t("sortList", {}, { returnObjects: true })
+    .filter(({ id }) => id === choosenSortId)
+    .map(({ text }) => {
+      return text;
+    });
+
   const handleSearch = (e) => {
-    axios
-      .get(`https://dummyjson.com/users/search?q=${e.target.value}`)
-      .then((response) => {
-        setUsers(response.data.users);
-      });
+    setQuery(e.target.value);
   };
 
   const openModal = () => {
@@ -51,7 +95,28 @@ const Main = () => {
   const closeModal = () => {
     setIsModalVisible(false);
   };
-  
+
+  const students = studentsArray.filter(
+    ({ firstName, lastName, email, company, age }) => {
+      return query === ""
+        ? firstName
+        : firstName.toLowerCase().includes(query.toLowerCase())
+        ? firstName
+        : lastName.toLowerCase().includes(query.toLowerCase())
+        ? lastName
+        : email.toLowerCase().includes(query.toLowerCase())
+        ? email
+        : age.toString().toLowerCase().includes(query.toLowerCase())
+        ? age.toString()
+        : company.title.toString().toLowerCase().includes(query.toLowerCase())
+        ? company.title.toString()
+        : company.department
+            .toString()
+            .toLowerCase()
+            .includes(query.toLowerCase()) && company.department.toString();
+    },
+  );
+
   return (
     <>
       <Modal closeModal={closeModal} isModalVisible={isModalVisible} />
@@ -89,9 +154,72 @@ const Main = () => {
         </div>
 
         <div className={styles["main-top"]}>
+          <div className={styles["main-top-sort"]}>
+            <div className={styles["main-top-sort__text"]}>{t("sortBy")}</div>
+
+            <div className={styles["main-top-sort-dashboard"]}>
+              <div
+                onClick={handleDropdown}
+                className={cn(styles["main-top-sort-dashboard-item"], {
+                  [styles["main-top-sort-dashboard-item--active"]]:
+                    activeDropdown,
+                })}
+              >
+                {choosenSortText}
+
+                <div
+                  className={cn(styles["main-top-sort-dashboard-item__icon"], {
+                    [styles["main-top-sort-dashboard-item__icon--active"]]:
+                      activeDropdown,
+                  })}
+                >
+                  <Image
+                    src={ARROW_URL}
+                    width={24}
+                    height={24}
+                    alt={t("sortBy")}
+                  />
+                </div>
+              </div>
+
+              <div
+                className={cn(styles["main-top-sort-dashboard-list"], {
+                  [styles["main-top-sort-dashboard-list--active"]]:
+                    activeDropdown,
+                })}
+              >
+                {t("sortList", {}, { returnObjects: true }).map(
+                  ({ id, text }) => {
+                    return (
+                      <div
+                        onClick={() => handleSort(id)}
+                        key={id}
+                        className={cn(
+                          styles["main-top-sort-dashboard-list__text"],
+                          {
+                            [styles[
+                              "main-top-sort-dashboard-list__text--active"
+                            ]]: choosenSortId === id,
+                          },
+                        )}
+                      >
+                        {text}
+                      </div>
+                    );
+                  },
+                )}
+              </div>
+            </div>
+          </div>
+
           <div className={styles["main-top-search"]}>
             <div className={styles["main-top-search__icon"]}>
-              <Image src={SEARCH_URL} width={32} height={32} />
+              <Image
+                src={SEARCH_URL}
+                width={32}
+                height={32}
+                alt={t("search")}
+              />
             </div>
             <input
               id="input"
@@ -100,13 +228,12 @@ const Main = () => {
             />
           </div>
           <Button
-            onClick={openModal}
             className={styles["main-top-button"]}
+            onClick={openModal}
             variant="primary"
-            width="max"
           >
             <div className={styles["main-top-button__icon"]}>
-              <Image src={ADD_URL} width={38} height={38} />
+              <Image src={ADD_URL} width={38} height={38} alt={t("addNew")} />
             </div>
             <div className={styles["main-top-button__text"]}>{t("addNew")}</div>
           </Button>
@@ -171,7 +298,7 @@ const Main = () => {
             <div className={styles["main-content-columns__edit"]} />
           </div>
           <div className={styles["main-content-students"]}>
-            {users.map(
+            {students?.map(
               ({ id, image, firstName, lastName, email, company, age }) => {
                 return (
                   <div
@@ -246,10 +373,13 @@ const Main = () => {
                         {company.department}
                       </div>
                     </div>
-
-                    <div className={styles["main-content-students-item__edit"]}>
-                      <ReactSVG src={EDIT_URL} />
-                    </div>
+                    <Link href={`/dashboard/${id}`}>
+                      <div
+                        className={styles["main-content-students-item__edit"]}
+                      >
+                        <ReactSVG src={EDIT_URL} />
+                      </div>
+                    </Link>
                   </div>
                 );
               },
@@ -262,3 +392,5 @@ const Main = () => {
 };
 
 export default Main;
+
+// sort((a, b) => a.firstName !== b.firstName ? a.firstName < b.firstName ? -1 : 1 : 0)

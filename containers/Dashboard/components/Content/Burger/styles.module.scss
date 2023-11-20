@@ -9,7 +9,7 @@
     flex-direction: column;
     transition: $timeMedium ease;
     position: relative;
-    z-index: 1;
+    z-index: 3;
     overflow-y: auto;
 
     @media (max-width: 1024px) {

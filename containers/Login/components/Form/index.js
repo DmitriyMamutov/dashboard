@@ -26,7 +26,7 @@ import styles from "./styles.module.scss";
 const Form = () => {
   const [checkboxActive, setCheckboxActive] = useState(false);
   const [inputType, setInputType] = useState("password");
-  const [errorStatus, setErrorStatus] = useState(null);
+  const [responseStatus, setResponseStatus] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -75,12 +75,12 @@ const Form = () => {
             expires: expirationDate,
             secure: true,
           });
-          setErrorStatus(null);
+          setResponseStatus(null);
           location.assign("/dashboard");
           reset();
         });
     } catch ({ response }) {
-      setErrorStatus(response.status);
+      setResponseStatus(response.status);
     }
   };
 
@@ -145,7 +145,6 @@ const Form = () => {
 
             <Button
               className={styles["form-content__button"]}
-              size="large"
               variant="primary"
               width="max"
               type="submit"
@@ -154,7 +153,7 @@ const Form = () => {
               {isSubmitting ? <img src={LOADER} /> : t("form.buttonText")}
             </Button>
 
-            {errorStatus && errorStatus !== 200 && (
+            {responseStatus && responseStatus !== 200 && (
               <div className={styles["form-content__error"]}>
                 {t(`form.responseError`)}
               </div>
@@ -167,31 +166,3 @@ const Form = () => {
 };
 
 export default Form;
-
-// const onSubmit = async (value) => {
-//   try {
-//     const response = await fetch("https://dummyjson.com/auth/login", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         username: value.name,
-//         password: value.password,
-//         // username: 'kminchelle',
-//         // password: '0lelplR',
-//       }),
-//     });
-
-//     if (response.status === 200) {
-//       const data = await response.json();
-//       console.log("success ", data);
-//       cookies.set("token", data.token, {
-//         expires: expirationDate,
-//       });
-//       setErrorStatus(null);
-//     } else {
-//       setErrorStatus(response.status);
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };

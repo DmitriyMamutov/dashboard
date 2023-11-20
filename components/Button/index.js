@@ -1,7 +1,7 @@
-import cn from 'classnames';
-import styles from './styles.module.scss';
+import cn from "classnames";
+import styles from "./styles.module.scss";
 
-const Button = props => {
+const Button = (props) => {
   const {
     variant,
     children,
@@ -15,11 +15,12 @@ const Button = props => {
   } = props;
 
   const buttonClass = cn(
-    styles['new-button'],
-    'new-button',
+    styles["new-button"],
+    "new-button",
     {
-      [styles['new-button--max']]: width === 'max',
-      [styles['new-button--primary']]: variant === 'primary',
+      [styles["new-button--max"]]: width === "max",
+      [styles["new-button--primary"]]: variant === "primary",
+      [styles["new-button--secondary"]]: variant === "secondary",
     },
     className,
   );

@@ -1,0 +1,41 @@
+{
+  "metaTitle": "Student",
+  "metaDescription": "",
+  "headerTitle": "Students",
+  "back": "Back",
+  "leftTitle": "Personal information",
+  "rightTitle": "Courses and Groups",
+  "replaceButton": "Replace",
+  "imageRequirements": "Must be a .jpg or .png file smaller than 10MB and at least 400px by 400px.",
+  "buttonText":"Save changes",
+  "error": "Check the passed values",
+  "success": "Student Updated",
+  "formItems": {
+    "firstName": {
+      "placeholder": "Name",
+      "required": "Name is required"
+    },
+    "lastName": {
+      "placeholder": "Surname",
+      "required": "Surname is required"
+    },
+    "email": {
+      "placeholder": "Email",
+      "required": "Email is required",
+      "valid": "Please enter a valid email"
+    },
+    "age": {
+      "placeholder": "Age",
+      "required": "Age is required",
+      "valid": "Please enter a valid age"
+    },
+    "course": {
+      "placeholder": "Course",
+      "required": "Course is required"
+    },
+    "group": {
+      "placeholder": "Group",
+      "required": "Group is required"
+    }
+  }
+}

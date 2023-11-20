@@ -8,7 +8,7 @@ export default function LoginPage() {
   if (cookieStore.get("token")) {
     redirect("/dashboard");
   }
-  
+
   return (
     <>
       <Login />

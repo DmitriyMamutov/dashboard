@@ -7,6 +7,6 @@ module.exports = {
     {
       id: "password",
       type: "password",
-    }
+    },
   ],
 };
