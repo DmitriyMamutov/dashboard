@@ -77,7 +77,6 @@ const Content = () => {
           },
         })
         .then((response) => {
-          console.log("response", response);
           dispatch(
             updateCurrentStudent({
               id: response.data.id,
