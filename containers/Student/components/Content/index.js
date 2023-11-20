@@ -43,6 +43,7 @@ const Content = () => {
       email: yup.string().email(t("formItems.email.valid")),
       age: yup
         .number()
+        .typeError(t("formItems.age.valid"))
         .nullable()
         .transform((_, val) => (val !== "" ? Number(val) : student.age)),
     })

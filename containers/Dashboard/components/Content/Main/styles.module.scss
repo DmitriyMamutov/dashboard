@@ -177,10 +177,12 @@
                     opacity: 0;
                     transition: $timeMedium ease;
                     transform: translateY(12px);
-
+                    visibility: hidden;
+                    
                     &--active {
                         opacity: 1;
                         transform: translateY(0px);
+                        visibility: visible;
                     }
 
                     &__text {
