@@ -72,7 +72,7 @@ const Content = () => {
             title:
               value.course.length === 0 ? student.company.title : value.course,
             department:
-              value.course.length === 0
+              value.group.length === 0
                 ? student.company.department
                 : value.group,
           },
