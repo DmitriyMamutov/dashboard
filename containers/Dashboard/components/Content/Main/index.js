@@ -392,5 +392,3 @@ const Main = () => {
 };
 
 export default Main;
-
-// sort((a, b) => a.firstName !== b.firstName ? a.firstName < b.firstName ? -1 : 1 : 0)
