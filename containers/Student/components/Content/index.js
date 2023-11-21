@@ -76,6 +76,9 @@ const Content = () => {
       }),
     );
     setResponseStatus(200);
+    setTimeout(() => {
+      setResponseStatus(null);
+    }, 3000);
   };
 
   return (

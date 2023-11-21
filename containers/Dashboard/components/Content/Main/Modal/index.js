@@ -71,6 +71,10 @@ const Modal = (props) => {
     setResponseStatus(200);
 
     setTimeout(() => {
+      setResponseStatus(null);
+    }, 800);
+
+    setTimeout(() => {
       closeModal();
     }, 700);
 
