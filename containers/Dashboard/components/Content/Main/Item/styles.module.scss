@@ -1,0 +1,238 @@
+@import "static/styles/base/variables";
+
+.item {
+    display: flex;
+    background: $colorWhite;
+    border-radius: 6px;
+    box-shadow: 0px 4px 20px 0px rgba($colorBlack, 0.03);
+    margin-bottom: 8px;
+    padding: 8px 16px;
+    align-items: center;
+
+    @media (max-width: 1260px) {
+        align-items: flex-start;
+    }
+
+    @media (max-width: 480px) {
+        flex-direction: column;
+    }
+
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        @media (max-width: 1260px) {
+            flex-wrap: wrap;
+            margin-left: 32px;
+        }
+
+        @media (max-width: 480px) {
+            margin-left: 0px;
+        }
+    }
+
+    span {
+        opacity: 0.6;
+        font-weight: 500;
+        font-size: 15px;
+        display: none;
+        word-break: keep-all;
+
+        @media (max-width: 1260px) {
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            margin-right: 4px;
+        }
+    }
+
+    &__avatar {
+        max-width: 40px;
+        width: 100%;
+        display: flex;
+
+        @media (max-width: 1024px) {
+            max-width: 32px;
+        }
+
+        @media (max-width: 480px) {
+            margin-bottom: 16px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &__text {
+        color: $colorSecondaryBlack;
+        font-family: $fontNunito;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+        padding-right: 8px;
+        word-wrap: break-word;
+
+        @media (max-width: 1024px) {
+            font-size: 15px;
+        }
+
+        @media (max-width: 480px) {
+            display: flex;
+        }
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+            @media (max-width: 1260px) {
+                margin-bottom: 4px;
+            }
+        }
+
+        &:nth-child(4) {
+            @media (max-width: 640px) {
+                margin-bottom: 4px;
+            }
+        }
+
+        &:nth-child(5) {
+            @media (max-width: 480px) {
+                margin-bottom: 4px;
+            }
+        }
+    }
+
+    &__name {
+        margin-left: 44px;
+        max-width: 132px;
+
+        @media (max-width: 1260px) {
+            margin-left: 0;
+            max-width: 33%;
+        }
+
+        @media (max-width: 640px) {
+            max-width: 50%;
+        }
+
+        @media (max-width: 480px) {
+            max-width: 100%;
+        }
+    }
+
+    &__surname {
+        max-width: 147px;
+
+        @media (max-width: 1260px) {
+            margin-left: 0;
+            max-width: 33%;
+        }
+
+        @media (max-width: 640px) {
+            max-width: 50%;
+        }
+
+        @media (max-width: 480px) {
+            max-width: 100%;
+        }
+    }
+
+    &__email {
+        max-width: 194px;
+
+        @media (max-width: 1260px) {
+            margin-left: 0;
+            max-width: 33%;
+        }
+
+        @media (max-width: 640px) {
+            max-width: 50%;
+        }
+
+        @media (max-width: 480px) {
+            max-width: 100%;
+            word-break: break-all;
+        }
+    }
+
+    &__age {
+        max-width: 110px;
+
+        @media (max-width: 1260px) {
+            margin-left: 0;
+            max-width: 33%;
+        }
+
+        @media (max-width: 640px) {
+            max-width: 50%;
+        }
+
+        @media (max-width: 480px) {
+            max-width: 100%;
+        }
+    }
+
+    &__course {
+        max-width: 197px;
+
+        @media (max-width: 1260px) {
+            margin-left: 0;
+            max-width: 33%;
+        }
+
+        @media (max-width: 640px) {
+            max-width: 50%;
+        }
+
+        @media (max-width: 480px) {
+            max-width: 100%;
+        }
+    }
+
+    &__group {
+        max-width: 177px;
+
+        @media (max-width: 1260px) {
+            margin-left: 0;
+            max-width: 33%;
+        }
+
+        @media (max-width: 640px) {
+            max-width: 50%;
+        }
+
+        @media (max-width: 480px) {
+            max-width: 100%;
+        }
+    }
+
+    &__edit {
+        max-width: 24px;
+        width: 100%;
+        display: flex;
+        margin-left: auto;
+        height: 24px;
+
+        &:hover {
+            svg {
+                path {
+                    fill: $colorPrimaryViolet;
+                }
+            }
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+
+            path {
+                transition: $timeMedium ease;
+            }
+        }
+    }
+}

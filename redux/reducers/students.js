@@ -49,7 +49,6 @@ const studentsSlice = createSlice({
         (item) => item.id === action.payload.id,
       );
       updatedStudent.firstName = action.payload.firstName;
-      updatedStudent.image = action.payload.image;
       updatedStudent.lastName = action.payload.lastName;
       updatedStudent.age = action.payload.age;
       updatedStudent.email = action.payload.email;

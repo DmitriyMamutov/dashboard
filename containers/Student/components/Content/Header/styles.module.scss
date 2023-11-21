@@ -1,0 +1,62 @@
+@import "static/styles/base/variables";
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 8px 39px 8px 32px;
+
+    @media (max-width: 1024px) {
+        padding: 24px;
+        margin-bottom: 32px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 24px 16px;
+    }
+
+    &__image {
+        max-width: 42px;
+        width: 100%;
+        display: flex;
+
+        @media (max-width: 480px) {
+            margin-bottom: 24px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &-right {
+        display: flex;
+
+        &__notification {
+            max-width: 32px;
+            width: 100%;
+            display: flex;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        &__avatar {
+            max-width: 32px;
+            width: 100%;
+            margin-left: 20px;
+            display: flex;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}

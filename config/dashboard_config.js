@@ -134,6 +134,7 @@ module.exports = {
       id: "course",
       placeholder: "title",
       type: "text",
+      
     },
     {
       id: "group",

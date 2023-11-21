@@ -7,7 +7,7 @@
   "rightTitle": "Courses and Groups",
   "replaceButton": "Replace",
   "imageRequirements": "Must be a .jpg or .png file smaller than 10MB and at least 400px by 400px.",
-  "buttonText":"Save changes",
+  "buttonText": "Save changes",
   "error": "Check the passed values",
   "success": "Student Updated",
   "formItems": {

@@ -1,0 +1,131 @@
+@import "static/styles/base/variables";
+
+.sort {
+    display: flex;
+    margin-left: auto;
+    max-width: 202px;
+    width: 100%;
+    align-items: center;
+
+    @media (max-width: 775px) {
+        margin-left: 0;
+        margin-bottom: 24px;
+        max-width: 236px;
+    }
+
+    &__text {
+        color: #afb7d3;
+        font-family: $fontNunito;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 24px;
+    }
+
+    &-dashboard {
+        margin-left: 16px;
+        max-width: 140px;
+        width: 100%;
+        position: relative;
+
+        @media (max-width: 775px) {
+            max-width: 174px;
+        }
+
+        &-item {
+            display: flex;
+            padding: 6px 12px;
+            max-height: 38px;
+            align-items: center;
+            border-radius: 6px;
+            border: 1px solid #e4e7ed;
+            background: $colorWhite;
+            cursor: pointer;
+            color: #3b4360;
+            font-family: $fontNunito;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 24px;
+            transition: $timeMedium ease;
+            position: relative;
+
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: 0px;
+                width: 100%;
+                max-width: 116px;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 1px;
+                background-color: #e4e7ed;
+                opacity: 0;
+                z-index: 3;
+                transition: $timeMedium ease;
+            }
+
+            &--active {
+                &:before {
+                    opacity: 1;
+                }
+            }
+
+            &__icon {
+                max-width: 12px;
+                width: 100%;
+                margin-left: auto;
+                transform: rotate(-90deg);
+                transition: $timeMedium ease;
+
+                &--active {
+                    transform: rotate(90deg);
+                }
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+
+        &-list {
+            position: absolute;
+            top: 32px;
+            left: 0;
+            padding: 12px 12px 8px;
+            background: $colorWhite;
+            width: 100%;
+            z-index: 2;
+            border-radius: 0 0 6px 6px;
+            border: 1px solid #e4e7ed;
+            border-top: 0;
+            opacity: 0;
+            transition: $timeMedium ease;
+            transform: translateY(12px);
+            visibility: hidden;
+            
+            &--active {
+                opacity: 1;
+                transform: translateY(0px);
+                visibility: visible;
+            }
+
+            &__text {
+                color: #3b4360;
+                font-family: $fontNunito;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 24px;
+                transition: $timeMedium ease;
+                cursor: pointer;
+                opacity: 0.45;
+                &:not(:last-child) {
+                    margin-bottom: 8px;
+                }
+
+                &--active {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

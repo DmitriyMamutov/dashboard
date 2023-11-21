@@ -2,21 +2,12 @@
 
 import useTranslation from "next-translate/useTranslation";
 import { useEffect, useState } from "react";
-import {
-  NOTIFICATION_URL,
-  EDIT_URL,
-  SEARCH_URL,
-  ADD_URL,
-  ARROW_URL,
-} from "config/dashboard_config";
+import { ADD_URL } from "config/dashboard_config";
 import Image from "next/image";
 import cn from "classnames";
-import Title from "components/Title";
-import { ReactSVG } from "react-svg";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Button from "components/Button";
-import Modal from "./Modal";
 import {
   getStudents,
   sortStudentsZa,
@@ -25,14 +16,19 @@ import {
   sortStudentsAgeOldest,
   sortStudentsDefault,
 } from "redux/reducers/students";
-import Link from "next/link";
+import Modal from "./Modal";
+import Header from "./Header";
+import Search from "./Search";
+import Sort from "./Sort";
+import Item from "./Item";
+
+import { storageStudents } from "utils/constants";
 
 import styles from "./styles.module.scss";
 
 const Main = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(false);
-
   const [query, setQuery] = useState("");
   const [choosenSortId, setChoosenSortId] = useState("s5");
 
@@ -40,13 +36,10 @@ const Main = () => {
   const dispatch = useDispatch();
 
   const avatarUrl = useSelector((state) => state.user.user.avatarUrl);
-  const studentsArray = useSelector((state) => state.students.students);
-
-  const logStudents = JSON.parse(localStorage.getItem("persist:root"));
-  const newLog = JSON.parse(logStudents.students);
+  const studentsSelector = useSelector((state) => state.students.students);
 
   useEffect(() => {
-    if (newLog.students.length === 0) {
+    if (storageStudents.students.length === 0) {
       axios.get("https://dummyjson.com/users").then((response) => {
         dispatch(getStudents(response.data.users));
       });
@@ -96,7 +89,7 @@ const Main = () => {
     setIsModalVisible(false);
   };
 
-  const students = studentsArray.filter(
+  const students = studentsSelector.filter(
     ({ firstName, lastName, email, company, age }) => {
       return query === ""
         ? firstName
@@ -108,12 +101,10 @@ const Main = () => {
         ? email
         : age.toString().toLowerCase().includes(query.toLowerCase())
         ? age.toString()
-        : company.title.toString().toLowerCase().includes(query.toLowerCase())
-        ? company.title.toString()
-        : company.department
-            .toString()
-            .toLowerCase()
-            .includes(query.toLowerCase()) && company.department.toString();
+        : company.title.toLowerCase().includes(query.toLowerCase())
+        ? company.title
+        : company.department.toLowerCase().includes(query.toLowerCase()) &&
+          company.department;
     },
   );
 
@@ -121,112 +112,17 @@ const Main = () => {
     <>
       <Modal closeModal={closeModal} isModalVisible={isModalVisible} />
       <div className={styles["main"]}>
-        <div className={styles["main-header"]}>
-          <Title
-            className={styles["main-header__title"]}
-            level={1}
-            size="h1"
-            color="secondary-black"
-            font="Nunito"
-          >
-            {t("headerTitle")}
-          </Title>
-
-          <div className={styles["main-header-left"]}>
-            <div className={styles["main-header-left__notification"]}>
-              <Image
-                src={NOTIFICATION_URL}
-                width={64}
-                height={64}
-                alt={t("headerTitle")}
-              />
-            </div>
-
-            <div className={styles["main-header-left__avatar"]}>
-              <Image
-                src={avatarUrl}
-                width={64}
-                height={64}
-                alt={t("metaTitle")}
-              />
-            </div>
-          </div>
-        </div>
-
+        <Header avatarUrl={avatarUrl} />
         <div className={styles["main-top"]}>
-          <div className={styles["main-top-sort"]}>
-            <div className={styles["main-top-sort__text"]}>{t("sortBy")}</div>
+          <Sort
+            handleDropdown={handleDropdown}
+            activeDropdown={activeDropdown}
+            choosenSortText={choosenSortText}
+            choosenSortId={choosenSortId}
+            handleSort={handleSort}
+          />
+          <Search handleSearch={handleSearch} />
 
-            <div className={styles["main-top-sort-dashboard"]}>
-              <div
-                onClick={handleDropdown}
-                className={cn(styles["main-top-sort-dashboard-item"], {
-                  [styles["main-top-sort-dashboard-item--active"]]:
-                    activeDropdown,
-                })}
-              >
-                {choosenSortText}
-
-                <div
-                  className={cn(styles["main-top-sort-dashboard-item__icon"], {
-                    [styles["main-top-sort-dashboard-item__icon--active"]]:
-                      activeDropdown,
-                  })}
-                >
-                  <Image
-                    src={ARROW_URL}
-                    width={24}
-                    height={24}
-                    alt={t("sortBy")}
-                  />
-                </div>
-              </div>
-
-              <div
-                className={cn(styles["main-top-sort-dashboard-list"], {
-                  [styles["main-top-sort-dashboard-list--active"]]:
-                    activeDropdown,
-                })}
-              >
-                {t("sortList", {}, { returnObjects: true }).map(
-                  ({ id, text }) => {
-                    return (
-                      <div
-                        onClick={() => handleSort(id)}
-                        key={id}
-                        className={cn(
-                          styles["main-top-sort-dashboard-list__text"],
-                          {
-                            [styles[
-                              "main-top-sort-dashboard-list__text--active"
-                            ]]: choosenSortId === id,
-                          },
-                        )}
-                      >
-                        {text}
-                      </div>
-                    );
-                  },
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div className={styles["main-top-search"]}>
-            <div className={styles["main-top-search__icon"]}>
-              <Image
-                src={SEARCH_URL}
-                width={32}
-                height={32}
-                alt={t("search")}
-              />
-            </div>
-            <input
-              id="input"
-              placeholder={t("search")}
-              onChange={handleSearch}
-            />
-          </div>
           <Button
             className={styles["main-top-button"]}
             onClick={openModal}
@@ -301,86 +197,16 @@ const Main = () => {
             {students?.map(
               ({ id, image, firstName, lastName, email, company, age }) => {
                 return (
-                  <div
+                  <Item
                     key={id}
-                    className={styles["main-content-students-item"]}
-                  >
-                    <div
-                      className={styles["main-content-students-item__avatar"]}
-                    >
-                      <Image src={image} alt={id} width={80} height={80} />
-                    </div>
-                    <div
-                      className={styles["main-content-students-item__wrapper"]}
-                    >
-                      <div
-                        className={cn(
-                          styles["main-content-students-item__text"],
-                          styles["main-content-students-item__name"],
-                        )}
-                      >
-                        <span>{t(`dashboardColumns.name`) + `: `}</span>
-                        {firstName}
-                      </div>
-
-                      <div
-                        className={cn(
-                          styles["main-content-students-item__text"],
-                          styles["main-content-students-item__surname"],
-                        )}
-                      >
-                        <span>{t(`dashboardColumns.surname`) + `: `}</span>
-                        {lastName}
-                      </div>
-
-                      <div
-                        className={cn(
-                          styles["main-content-students-item__text"],
-                          styles["main-content-students-item__email"],
-                        )}
-                      >
-                        <span>{t(`dashboardColumns.email`) + `: `}</span>
-                        {email}
-                      </div>
-
-                      <div
-                        className={cn(
-                          styles["main-content-students-item__text"],
-                          styles["main-content-students-item__age"],
-                        )}
-                      >
-                        <span>{t(`dashboardColumns.age`) + `: `}</span>
-                        {age}
-                      </div>
-
-                      <div
-                        className={cn(
-                          styles["main-content-students-item__text"],
-                          styles["main-content-students-item__course"],
-                        )}
-                      >
-                        <span>{t(`dashboardColumns.course`) + `: `}</span>
-                        {company.title}
-                      </div>
-
-                      <div
-                        className={cn(
-                          styles["main-content-students-item__text"],
-                          styles["main-content-students-item__group"],
-                        )}
-                      >
-                        <span>{t(`dashboardColumns.group`) + `: `}</span>
-                        {company.department}
-                      </div>
-                    </div>
-                    <Link href={`/dashboard/${id}`}>
-                      <div
-                        className={styles["main-content-students-item__edit"]}
-                      >
-                        <ReactSVG src={EDIT_URL} />
-                      </div>
-                    </Link>
-                  </div>
+                    id={id}
+                    image={image}
+                    firstName={firstName}
+                    lastName={lastName}
+                    email={email}
+                    age={age}
+                    company={company}
+                  />
                 );
               },
             )}

@@ -1,0 +1,67 @@
+@import "static/styles/base/variables";
+
+.select {
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin-bottom: 24px;
+    flex-direction: column;
+
+    &__placeholder {
+        color: $colorHoverGrey;
+        font-family: $fontLexend;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+        margin-bottom: 4px;
+    }
+
+    &-item {
+        position: relative;
+
+        &:after {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            width: 12px;
+            height: 6px;
+            background-color: $colorBlack;
+            clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+            top: 50%;
+            transform: translateY(-50%);
+            right: 23px;
+        }
+
+        select {
+            width: 100%;
+            transition: $timeMedium;
+            border: 1px solid $colorActiveGrey;
+            background: $colorWhite;
+            color: $colorBlack;
+            font-family: $fontLexend;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 24px;
+            padding: 11px 16px;
+            --webkit-appearance: none;
+            color: $colorBlack;
+            border: 1px solid $colorActiveGrey;
+            outline: 0;
+            appearance: none;
+            transition: $timeMedium ease;
+
+            &:focus {
+                border-color: $colorPressedGreyButton;
+            }
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            &::-ms-expand {
+                display: none;
+            }
+        }
+    }
+}

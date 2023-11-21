@@ -61,62 +61,6 @@
         width: 100%;
         margin: 0 auto;
 
-        &-label {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 32px;
-            position: relative;
-
-            @media (max-width: 480px) {
-                margin-bottom: 24px;
-            }
-
-            &__text {
-                margin-bottom: 4px;
-                color: $colorHoverGrey;
-                font-family: $fontLexend;
-                font-size: 14px;
-                font-weight: 400;
-                line-height: 24px;
-            }
-
-            &__input {
-                transition: $timeMedium;
-                border: 1px solid $colorActiveGrey;
-                background: $colorWhite;
-                color: $colorBlack;
-                font-family: $fontLexend;
-                font-size: 15px;
-                font-weight: 400;
-                line-height: 24px;
-                padding: 11px 16px;
-                --webkit-appearance: none;
-                color: $colorBlack;
-
-                &:focus {
-                    outline: unset;
-                    border: 1px solid $colorPressedGreyButton;
-                    --webkit-appearance: none;
-                }
-            }
-
-            &__error {
-                font-family: $fontLexend;
-                color: $colorErrorRed;
-                position: absolute;
-                width: 100%;
-                bottom: -20px;
-                left: 0px;
-                font-size: 12px;
-                line-height: 16px;
-                font-weight: 400;
-
-                @media (max-width: 480px) {
-                    bottom: -18px;
-                }
-            }
-        }
-
         &__checkbox {
             margin-bottom: 32px;
 

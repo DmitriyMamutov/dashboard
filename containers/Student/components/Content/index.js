@@ -1,24 +1,22 @@
 "use client";
 import { useState } from "react";
 import { useParams } from "next/navigation";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCurrentStudent } from "redux/reducers/students";
 import useTranslation from "next-translate/useTranslation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "components/Button";
-import Link from "next/link";
-import Image from "next/image";
 import * as yup from "yup";
 import cn from "classnames";
-
-import {
-  FORM_LIST,
-  NOTIFICATION_URL,
-  ARROW_URL,
-} from "config/dashboard_config";
-import { LOADER, LOGO_VIOLET } from "config/data_config";
+import { FORM_LIST } from "config/dashboard_config";
+import { LOADER } from "config/data_config";
+import Header from "./Header";
+import Back from "./Back";
+import Top from "./Top";
+import Label from "components/Label";
+import ResponseStatus from "./ResponseStatus";
+import Select from "./Select";
 
 import styles from "./styles.module.scss";
 
@@ -30,6 +28,7 @@ const Content = () => {
   const [responseStatus, setResponseStatus] = useState(null);
 
   const avatarUrl = useSelector((state) => state.user.user.avatarUrl);
+  const students = useSelector((state) => state.students.students);
 
   const student = useSelector((state) =>
     state.students.students.find(
@@ -58,89 +57,33 @@ const Content = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (value) => {
-    try {
-      await axios
-        .put(`https://dummyjson.com/users/${params.id}`, {
-          firstName:
-            value.firstName.length === 0 ? student.firstName : value.firstName,
-          lastName:
-            value.lastName.length === 0 ? student.lastName : value.lastName,
-          age: value.age.length === 0 ? student.age : value.age,
-          email: value.email.length === 0 ? student.email : value.email,
-          company: {
-            title:
-              value.course.length === 0 ? student.company.title : value.course,
-            department:
-              value.group.length === 0
-                ? student.company.department
-                : value.group,
-          },
-        })
-        .then((response) => {
-          dispatch(
-            updateCurrentStudent({
-              id: response.data.id,
-              image: response.data.image,
-              firstName: response.data.firstName,
-              lastName: response.data.lastName,
-              age: response.data.age,
-              email: response.data.email,
-              company: {
-                title: response.data.company.title,
-                department: response.data.company.department,
-              },
-            }),
-          );
-          setResponseStatus(response.status);
-        });
-    } catch {
-      setResponseStatus(400);
-    }
+  const onSubmit = (value) => {
+    dispatch(
+      updateCurrentStudent({
+        id: student.id,
+        firstName:
+          value.firstName.length === 0 ? student.firstName : value.firstName,
+        lastName:
+          value.lastName.length === 0 ? student.lastName : value.lastName,
+        age: value.age.length === 0 ? student.age : value.age,
+        email: value.email.length === 0 ? student.email : value.email,
+        company: {
+          title:
+            value.course.length === 0 ? student.company.title : value.course,
+          department:
+            value.group.length === 0 ? student.company.department : value.group,
+        },
+      }),
+    );
+    setResponseStatus(200);
   };
 
   return (
     <section className={styles["content"]}>
-      <div className={styles["content-header"]}>
-        <div className={styles["content-header__image"]}>
-          <Image
-            src={LOGO_VIOLET}
-            width={160}
-            height={160}
-            alt={t("headerTitle")}
-          />
-        </div>
-        <div className={styles["content-header-right"]}>
-          <div className={styles["content-header-right__notification"]}>
-            <Image
-              src={NOTIFICATION_URL}
-              width={64}
-              height={64}
-              alt={t("headerTitle")}
-            />
-          </div>
+      <Header avatarUrl={avatarUrl} />
 
-          <div className={styles["content-header-right__avatar"]}>
-            <Image
-              src={avatarUrl}
-              width={64}
-              height={64}
-              alt={t("metaTitle")}
-            />
-          </div>
-        </div>
-      </div>
       <div className={styles["content-block"]}>
-        <Link href="/dashboard">
-          <div className={styles["content-block-back"]}>
-            <div className={styles["content-block-back__arrow"]}>
-              <Image src={ARROW_URL} width={24} height={24} alt={t("back")} />
-            </div>
-            <div className={styles["content-block-back__text"]}>
-              {t("back")}
-            </div>
-          </div>
-        </Link>
+        <Back />
 
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -152,82 +95,20 @@ const Content = () => {
             </div>
 
             <div className={styles["content-block-form-left-wrapper"]}>
-              <div className={styles["content-block-form-left-wrapper-top"]}>
-                <div
-                  className={
-                    styles["content-block-form-left-wrapper-top__image"]
-                  }
-                >
-                  <Image src={student?.image} width={168} height={168} />
-                </div>
-
-                <div
-                  className={
-                    styles["content-block-form-left-wrapper-top-right"]
-                  }
-                >
-                  <div
-                    className={
-                      styles[
-                        "content-block-form-left-wrapper-top-right__button"
-                      ]
-                    }
-                  >
-                    <Button disabled variant="secondary" width="max">
-                      {t("replaceButton")}
-                    </Button>
-                  </div>
-
-                  <div
-                    className={
-                      styles[
-                        "content-block-form-left-wrapper-top-right__requirements"
-                      ]
-                    }
-                  >
-                    {t("imageRequirements")}
-                  </div>
-                </div>
-              </div>
+              <Top student={student} />
 
               <div className={styles["content-block-form-left-wrapper-main"]}>
                 {FORM_LIST.slice(0, 4).map(({ id, type, placeholder }) => {
                   return (
-                    <label
+                    <Label
                       key={id}
-                      className={
-                        styles["content-block-form-left-wrapper-main-label"]
-                      }
-                    >
-                      <span
-                        className={
-                          styles[
-                            "content-block-form-left-wrapper-main-label__text"
-                          ]
-                        }
-                      >
-                        {t(`formItems.${id}.placeholder`)}
-                      </span>
-                      <input
-                        className={
-                          styles[
-                            "content-block-form-left-wrapper-main-label__input"
-                          ]
-                        }
-                        {...register(id)}
-                        placeholder={student[placeholder]}
-                        type={type}
-                      />
-                      <span
-                        className={
-                          styles[
-                            "content-block-form-left-wrapper-main-label__error"
-                          ]
-                        }
-                      >
-                        {errors[`${id}`]?.message}
-                      </span>
-                    </label>
+                      id={id}
+                      placeholder={t(`formItems.${id}.placeholder`)}
+                      inputText={student[placeholder]}
+                      register={register}
+                      type={type}
+                      errors={errors[`${id}`]?.message}
+                    />
                   );
                 })}
               </div>
@@ -249,24 +130,7 @@ const Content = () => {
                   {isSubmitting ? <img src={LOADER} /> : t("buttonText")}
                 </Button>
 
-                {responseStatus &&
-                  (responseStatus === 200 ? (
-                    <div
-                      className={
-                        styles["content-block-form-left-wrapper-main__success"]
-                      }
-                    >
-                      {t("success")}
-                    </div>
-                  ) : (
-                    <div
-                      className={
-                        styles["content-block-form-left-wrapper-main__error"]
-                      }
-                    >
-                      {t("error")}
-                    </div>
-                  ))}
+                <ResponseStatus responseStatus={responseStatus} />
               </div>
             </div>
           </div>
@@ -282,43 +146,16 @@ const Content = () => {
             </div>
 
             <div className={styles["content-block-form-left-wrapper-main"]}>
-              {FORM_LIST.slice(4).map(({ id, type, placeholder }) => {
+              {FORM_LIST.slice(4).map(({ id, placeholder }) => {
                 return (
-                  <label
+                  <Select
                     key={id}
-                    className={
-                      styles["content-block-form-left-wrapper-main-label"]
-                    }
-                  >
-                    <span
-                      className={
-                        styles[
-                          "content-block-form-left-wrapper-main-label__text"
-                        ]
-                      }
-                    >
-                      {t(`formItems.${id}.placeholder`)}
-                    </span>
-                    <input
-                      className={
-                        styles[
-                          "content-block-form-left-wrapper-main-label__input"
-                        ]
-                      }
-                      {...register(id)}
-                      placeholder={student.company[placeholder]}
-                      type={type}
-                    />
-                    <span
-                      className={
-                        styles[
-                          "content-block-form-left-wrapper-main-label__error"
-                        ]
-                      }
-                    >
-                      {errors[`${id}`]?.message}
-                    </span>
-                  </label>
+                    id={id}
+                    register={register}
+                    student={student}
+                    placeholder={placeholder}
+                    students={students}
+                  />
                 );
               })}
             </div>
@@ -336,24 +173,7 @@ const Content = () => {
                 {isSubmitting ? <img src={LOADER} /> : t("buttonText")}
               </Button>
 
-              {responseStatus &&
-                (responseStatus === 200 ? (
-                  <div
-                    className={
-                      styles["content-block-form-left-wrapper-main__success"]
-                    }
-                  >
-                    {t("success")}
-                  </div>
-                ) : (
-                  <div
-                    className={
-                      styles["content-block-form-left-wrapper-main__error"]
-                    }
-                  >
-                    {t("error")}
-                  </div>
-                ))}
+              <ResponseStatus responseStatus={responseStatus} />
             </div>
           </div>
         </form>

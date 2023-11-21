@@ -1,0 +1,21 @@
+@import "static/styles/base/variables";
+
+.error {
+    font-family: $fontLexend;
+    color: $colorErrorRed;
+    width: 100%;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    margin-top: 4px;
+}
+
+.success {
+    font-family: $fontLexend;
+    color: $colorAcademyGreen;
+    width: 100%;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 500;
+    margin-top: 4px;
+}

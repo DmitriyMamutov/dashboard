@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
@@ -7,21 +6,17 @@ import useTranslation from "next-translate/useTranslation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Cookies from "universal-cookie";
-
 import Title from "components/Title";
 import Button from "components/Button";
 import Checkbox from "components/Checkbox";
-
 import { FORM_LIST } from "config/login_config";
 import { LOGO_VIOLET, LOADER } from "config/data_config";
 import axios from "axios";
 import { loginAccount } from "redux/reducers/user";
 import { useDispatch } from "react-redux";
+import Label from "components/Label";
 
 import styles from "./styles.module.scss";
-
-// username: 'kminchelle',
-// password: '0lelplR',
 
 const Form = () => {
   const [checkboxActive, setCheckboxActive] = useState(false);
@@ -121,19 +116,14 @@ const Form = () => {
           >
             {FORM_LIST.map(({ id, type }) => {
               return (
-                <label key={id} className={styles["form-content-label"]}>
-                  <span className={styles["form-content-label__text"]}>
-                    {t(`form.items.${id}.placeholder`)}
-                  </span>
-                  <input
-                    className={styles["form-content-label__input"]}
-                    {...register(id)}
-                    type={type !== "text" ? inputType : type}
-                  />
-                  <span className={styles["form-content-label__error"]}>
-                    {errors[`${id}`]?.message}
-                  </span>
-                </label>
+                <Label
+                  key={id}
+                  register={register}
+                  id={id}
+                  type={type !== "text" ? inputType : type}
+                  errors={errors[`${id}`]?.message}
+                  placeholder={t(`form.items.${id}.placeholder`)}
+                />
               );
             })}
             <div className={styles["form-content__checkbox"]}>

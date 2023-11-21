@@ -6,10 +6,9 @@ import Title from "components/Title";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "components/Button";
-import axios from "axios";
 import { addStudent } from "redux/reducers/students";
 import { useDispatch, useSelector } from "react-redux";
-
+import Label from "components/Label";
 import { FORM_LIST, CLOSE_URL } from "config/dashboard_config";
 import { LOADER } from "config/data_config";
 
@@ -23,6 +22,8 @@ const Modal = (props) => {
   const dispatch = useDispatch();
 
   const [responseStatus, setResponseStatus] = useState(null);
+
+  const students = useSelector((state) => state.students.students);
 
   const schema = yup
     .object()
@@ -52,33 +53,28 @@ const Modal = (props) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (value) => {
-    try {
-      await axios
-        .post("https://dummyjson.com/users/add", {
-          id: value.id,
-          image: "/static/images/dashboard/header/avatar.png",
-          firstName: value.firstName,
-          lastName: value.lastName,
-          age: value.age,
-          email: value.email,
-          company: { title: value.course, department: value.group },
-        })
-        .then((response) => {
-          dispatch(addStudent(response.data));
+  const onSubmit = (value) => {
+    dispatch(
+      addStudent({
+        id: students.length + 1,
+        firstName: value.firstName,
+        lastName: value.lastName,
+        age: value.age,
+        email: value.email,
+        company: {
+          title: value.course,
+          department: value.group,
+        },
+      }),
+    );
 
-          setResponseStatus(response.status);
+    setResponseStatus(200);
 
-          setTimeout(() => {
-            closeModal();
-          }, 700);
+    setTimeout(() => {
+      closeModal();
+    }, 700);
 
-          reset();
-
-        });
-    } catch ({ response }) {
-      setResponseStatus(response.status);
-    }
+    reset();
   };
 
   return (
@@ -111,26 +107,14 @@ const Modal = (props) => {
           >
             {FORM_LIST.map(({ id, type }) => {
               return (
-                <label
+                <Label
                   key={id}
-                  className={styles["modal-banner-content-form-label"]}
-                >
-                  <span
-                    className={styles["modal-banner-content-form-label__text"]}
-                  >
-                    {t(`modal.formItems.${id}.placeholder`)}
-                  </span>
-                  <input
-                    className={styles["modal-banner-content-form-label__input"]}
-                    {...register(id)}
-                    type={type}
-                  />
-                  <span
-                    className={styles["modal-banner-content-form-label__error"]}
-                  >
-                    {errors[`${id}`]?.message}
-                  </span>
-                </label>
+                  register={register}
+                  id={id}
+                  type={type}
+                  errors={errors[`${id}`]?.message}
+                  placeholder={t(`modal.formItems.${id}.placeholder`)}
+                />
               );
             })}
 

@@ -1,0 +1,43 @@
+@import "static/styles/base/variables";
+
+.back {
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        .content-block-back__text {
+            color: $colorHoverGrey;
+        }
+    }
+
+    &:active {
+        .content-block-back__text {
+            color: $colorPressedBlack;
+        }
+    }
+
+    @media (max-width: 1060px) {
+        margin-bottom: 40px;
+    }
+    &__arrow {
+        max-width: 24px;
+        width: 100%;
+
+        img {
+            display: flex;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &__text {
+        margin-left: 8px;
+        color: $colorBlack;
+        font-family: $fontLexend;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: -0.32px;
+        transition: $timeMedium ease;
+    }
+}

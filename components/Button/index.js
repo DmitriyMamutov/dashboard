@@ -7,7 +7,6 @@ const Button = (props) => {
     children,
     className,
     onClick,
-    onMouseEnter,
     id,
     disabled,
     type,
@@ -30,7 +29,6 @@ const Button = (props) => {
       disabled={disabled}
       onClick={onClick}
       className={buttonClass}
-      onMouseEnter={onMouseEnter}
       id={id}
       type={type}
       role="button"
