@@ -12,6 +12,11 @@
     visibility: hidden;
     transition: $timeMedium ease;
 
+    // @media(max-width: 480px){
+    //     height: auto;
+    //     background-color: red;
+    // }
+
     &--visible {
         opacity: 1;
         visibility: visible;
@@ -26,6 +31,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
 
+
         &-content {
             padding: 40px 110px 48px;
             position: relative;
@@ -39,6 +45,7 @@
 
             @media (max-width: 480px) {
                 padding: 56px 32px;
+                opacity: auto;
             }
 
             &__close {
@@ -49,6 +56,11 @@
                 max-width: 40px;
                 width: 100%;
                 cursor: pointer;
+
+                @media(max-width: 480px){
+                    top: 24px;
+                    right: 24px;
+                }
 
                 &:hover {
                     path {
