@@ -9,7 +9,7 @@
     padding: 8px 16px;
     align-items: center;
 
-    @media (max-width: 1260px) {
+    @media (max-width: 1439px) {
         align-items: flex-start;
     }
 
@@ -22,7 +22,7 @@
         align-items: center;
         width: 100%;
 
-        @media (max-width: 1260px) {
+        @media (max-width: 1439px) {
             flex-wrap: wrap;
             margin-left: 32px;
         }
@@ -39,7 +39,7 @@
         display: none;
         word-break: keep-all;
 
-        @media (max-width: 1260px) {
+        @media (max-width: 1439px) {
             display: block;
         }
 
@@ -74,7 +74,7 @@
         font-size: 16px;
         font-weight: 700;
         line-height: 24px;
-        padding-right: 8px;
+        padding-right: 16px;
         word-wrap: break-word;
 
         @media (max-width: 1024px) {
@@ -88,7 +88,7 @@
         &:nth-child(1),
         &:nth-child(2),
         &:nth-child(3) {
-            @media (max-width: 1260px) {
+            @media (max-width: 1439px) {
                 margin-bottom: 4px;
             }
         }
@@ -110,7 +110,7 @@
         margin-left: 44px;
         max-width: 132px;
 
-        @media (max-width: 1260px) {
+        @media (max-width: 1439px) {
             margin-left: 0;
             max-width: 33%;
         }
@@ -127,7 +127,7 @@
     &__surname {
         max-width: 147px;
 
-        @media (max-width: 1260px) {
+        @media (max-width: 1439px) {
             margin-left: 0;
             max-width: 33%;
         }
@@ -144,7 +144,7 @@
     &__email {
         max-width: 194px;
 
-        @media (max-width: 1260px) {
+        @media (max-width: 1439px) {
             margin-left: 0;
             max-width: 33%;
         }
@@ -162,7 +162,7 @@
     &__age {
         max-width: 110px;
 
-        @media (max-width: 1260px) {
+        @media (max-width: 1439px) {
             margin-left: 0;
             max-width: 33%;
         }
@@ -179,7 +179,7 @@
     &__course {
         max-width: 197px;
 
-        @media (max-width: 1260px) {
+        @media (max-width: 1439px) {
             margin-left: 0;
             max-width: 33%;
         }
@@ -196,7 +196,7 @@
     &__group {
         max-width: 177px;
 
-        @media (max-width: 1260px) {
+        @media (max-width: 1439px) {
             margin-left: 0;
             max-width: 33%;
         }
@@ -210,12 +210,21 @@
         }
     }
 
+    a {
+        @media (max-width: 480px) {
+            margin-left: auto;
+        }
+    }
     &__edit {
         max-width: 24px;
         width: 100%;
         display: flex;
         margin-left: auto;
         height: 24px;
+
+        @media (max-width: 480px) {
+            margin-top: 8px;
+        }
 
         &:hover {
             svg {

@@ -68,7 +68,6 @@ const Form = () => {
           dispatch(loginAccount(response.data));
           cookies.set("token", response.data.token, {
             expires: expirationDate,
-            secure: true,
           });
           setResponseStatus(null);
           location.assign("/dashboard");
